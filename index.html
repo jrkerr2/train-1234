@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Employee DB Form</title>
+    <!--link to Bootstrap CSS-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
+        crossorigin="anonymous">
+
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <img src="" style="max-height: 150px" class="img-thumbnail">
+            <h1 class="display-4 text-center">Train Schedules</h1>
+            <p class="display-12 text-center">Add your train for an update!</p>
+        </div>
+        <br>
+
+        <div>Current time: </div>
+        <br>
+
+        <div>Messages: </div>
+        <br>        
+        
+
+        <div class="card-body" id="trainTable">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Train Name</th>
+                        <th scope="col">Destination</th>
+                        <th scope="col">Frequency (min)</th>
+                        <th scope="col">Next Arrival</th>
+                        <th scope="col">Minutes Away</th>
+                    </tr>
+                </thead>
+                <tbody id="trainList">
+
+                </tbody>
+            </table>
+
+        </div>
+
+
+        <form>
+            <div class="form-group">
+                <label for="trainName">Train Name:</label>
+                <input type="text" class="form-control" id="uName">
+            </div>
+            <div class="form-group">
+                <label for="destination">Destination:</label>
+                <input type="text" class="form-control" id="uRole">
+            </div>
+            <div class="form-group">
+                <label for="startTime">First Train Time:</label>
+                <input type="time" class="form-control" id="start-year" placeholder="YYYYMMDD">
+            </div>
+            <div class="form-group">
+                <label for="frequency">Frequency (min):</label>
+                <input type="number" class="form-control" id="monthly-rate" placeholder="0">
+            </div>
+            
+            <button type="button" class="btn btn-primary btn-sm" id="add">Add</button>
+            
+        </form>
+       
+    </div>
+
+    <!-- javascript section -->
+    <script>
+        $(document).ready(function () {
+
+            // ON CLICK TRIGGER API SEACH
+            $("#submit").on("click", function () {
+                var $searchTerm = $("#search-term").val();
+                var $numRecords = parseInt($("#records").val());
+                var $startYear = $("#start-year").val();
+                var $endYear = $("#end-year").val();
+}
