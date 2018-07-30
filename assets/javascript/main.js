@@ -1,11 +1,9 @@
-// begin Train app; 
+// *** begin Train app ***
 // get user input from a web form
-// save user data to a Firebase DB
+// save user input data to a Firebase DB
 // calculate stuff
 // retrieve calc and data
 // display new info to users
-
-// **** reference js file in HTML *****
     
 // Initialize Firebase
     var config = {
@@ -31,10 +29,10 @@
         var firstTrainMin; // minutes parsed from firstTrain
         var intervalTrain; // how long between trains
         var minutesAway; // how long until next train (CALCULATED)
-        var trainName = []; // train names array to store data from users
-        var destination = []; // array for user-entered destination names
+        var trainName; // train names array to store data from users
+        var destination; // array for user-entered destination names
         var nextArrival; // date-time (CALCULATED)
-        var now; // current time
+        //var now; // current time
         var nowMin; // current time, parsed for minutes only
         var remainder; // leftover for math functions
         var tDiff; // difference between interval & now (minutes)
@@ -42,15 +40,15 @@
 
 
         // set current time in header
-        var updateNow = function() {
-            now = moment().format('MMM DD HH:mm:ss');
-            $("#current-time").html(now);            
-            setInterval(updateNow, 1000);
+        //var updateNow = function() {
+        //    now = moment().format('MMM DD HH:mm:ss');
+        //    $("#current-time").html(now);            
+        //    setInterval(updateNow, 1000);
             //return now;
             
-        }
+        //}
 
-        updateNow();
+        //updateNow();
 
         var calcNext = function () {
             var currentTime = moment().format('MMM DD HH:mm:ss');
@@ -77,10 +75,37 @@
             console.log("next arrival in min: " + nextArrivalMin)
 
             var tTime = moment().format('HH:mm');
-            nextArrival = moment(tTime,'HH:mm').add(nextArrivalMin,'minutes');
+            nextArrival = moment(tTime,'HH:mm').add(minutesAway,'minutes');
+            console.log("current time: " + tTime);
             //alert(nextArrival);
 
-        }       
+        }
+        
+        
+
+        // display last 20 trains
+        //    database.ref().orderByChild("dateAdded").limitToLast(20).on("child_added", function(snapshot){
+
+                //console.log("train name: " + snapshot.val().name);
+                //console.log("Destination: " + snapshot.val().destination);
+                //console.log("First Train : " + snapshot.val().firstTime);
+                //console.log("Frequency: " + snapshot.val().frequency);
+                //console.log("Next train: " + snapshot.val().nextArrival);
+                //console.log("minutes Away: " + snapshot.val().minutesAway);
+                //console.log("%%%%%%%%%%%%DONE%%%%%%%%%%%");
+
+                // change the html with data from database
+        //        $("#trainTable").append("<tr><td>" + snapshot.val().trainName + "</td>" +
+        //            "<td>" + snapshot.val().destination + "</td>" +
+        //            "<td>" + snapshot.val().intervalTrain + "</td>" +
+        //            "<td>" + snapshot.val().nextArrival + "</td>" +
+        //            "<td>" + snapshot.val(). minutesAway + "</td></tr>");
+            
+
+        //    }, function(errorObject) {
+        //        console.log("Errors handled: " + errorObject.code);
+
+        //    });
         
                       
         // ADD button handler        
@@ -101,19 +126,19 @@
             calcNext();
             console.log("after function (minutesAway): " + minutesAway);
             console.log("after function (nextArrivalMin): " + nextArrivalMin);
-            //console.log("after function (nextArrival): " + nextArrival);
-            console.log(nextArrival.format('HH:mm'));
-            alert(nextArrival);
+            console.log("after function (nextArrival): " + nextArrival);
+            console.log("Human readable time: " + nextArrival.format('HH:mm'));
+            //alert(nextArrival);
 
-            //database.ref().push({
-            //    trainName: trainName,
-            //    destination: destination,
-            //    firstTrain: firstTrain,
-            //    frequency: intervalTrain,
-                // minutesAway: minutesAway,
-                // nextArrival: nextArrival,
-            //    dateAdded: firebase.database.ServerValue.TIMESTAMP
-            //});
+            database.ref("myTrains").push({
+                trainName: trainName,
+                destination: destination,
+                firstTrain: firstTrain,
+                frequency: intervalTrain,
+                //minutesAway: minutesAway,
+                //nextArrival: nextArrival,
+                dateAdded: firebase.database.ServerValue.TIMESTAMP
+            });
         
 
         })
