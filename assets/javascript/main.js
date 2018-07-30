@@ -84,28 +84,29 @@
         
 
         // display last 20 trains
-        //    database.ref().orderByChild("dateAdded").limitToLast(20).on("child_added", function(snapshot){
+            database.ref("myTrains").orderByChild("dateAdded").limitToLast(20).on("child_added", function(snapshot){
 
-                //console.log("train name: " + snapshot.val().name);
-                //console.log("Destination: " + snapshot.val().destination);
-                //console.log("First Train : " + snapshot.val().firstTime);
-                //console.log("Frequency: " + snapshot.val().frequency);
-                //console.log("Next train: " + snapshot.val().nextArrival);
-                //console.log("minutes Away: " + snapshot.val().minutesAway);
-                //console.log("%%%%%%%%%%%%DONE%%%%%%%%%%%");
-
+                console.log("##### BEGIN DB ###########");
+                console.log("dB train name: " + snapshot.val().trainName);
+                console.log("dB Destination: " + snapshot.val().destination);
+                console.log("dB First Train : " + snapshot.val().firstTrain);
+                console.log("dB Frequency: " + snapshot.val().frequency);
+                console.log("dB Next train: " + snapshot.val().nextArrival);
+                console.log("dB minutes Away: " + snapshot.val().minutesAway);
+                console.log("%%%%%%%%% END DB %%%%%%%%%%%");
+ 
                 // change the html with data from database
-        //        $("#trainTable").append("<tr><td>" + snapshot.val().trainName + "</td>" +
-        //            "<td>" + snapshot.val().destination + "</td>" +
-        //            "<td>" + snapshot.val().intervalTrain + "</td>" +
-        //            "<td>" + snapshot.val().nextArrival + "</td>" +
-        //            "<td>" + snapshot.val(). minutesAway + "</td></tr>");
+                $("#trainList").append("<tr><td>" + snapshot.val().trainName + "</td>" +
+                    "<td>" + snapshot.val().destination + "</td>" +
+                    "<td>" + snapshot.val().frequency + "</td>" +
+                    "<td>" + snapshot.val().nextArrival + "</td>" +
+                    "<td>" + snapshot.val(). minutesAway + "</td></tr>");
             
 
-        //    }, function(errorObject) {
-        //        console.log("Errors handled: " + errorObject.code);
+            }, function(errorObject) {
+                console.log("Errors handled: " + errorObject.code);
 
-        //    });
+            });
         
                       
         // ADD button handler        
@@ -135,8 +136,8 @@
                 destination: destination,
                 firstTrain: firstTrain,
                 frequency: intervalTrain,
-                //minutesAway: minutesAway,
-                //nextArrival: nextArrival,
+                minutesAway: minutesAway,
+                nextArrival: nextArrival.format('HH:mm'),
                 dateAdded: firebase.database.ServerValue.TIMESTAMP
             });
         
