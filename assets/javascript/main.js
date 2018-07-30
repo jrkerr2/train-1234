@@ -140,6 +140,9 @@
                 nextArrival: nextArrival.format('HH:mm'),
                 dateAdded: firebase.database.ServerValue.TIMESTAMP
             });
+
+            // empty text input form fields
+            $(".form-control").val("");
         
 
         })
