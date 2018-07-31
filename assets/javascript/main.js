@@ -39,7 +39,7 @@
         var nextArrivalMin; // next arrival time, parsed for minutes
 
 
-        // set current time in header
+        // set current time in header ***DEBUG
         //var updateNow = function() {
         //    now = moment().format('MMM DD HH:mm:ss');
         //    $("#current-time").html(now);            
@@ -84,7 +84,7 @@
         
 
         // display last 20 trains
-            database.ref("myTrains").orderByChild("dateAdded").limitToLast(20).on("child_added", function(snapshot){
+            database.ref("myTrains").orderByChild("dateAdded").limitToLast(10).on("child_added", function(snapshot){
 
                 console.log("##### BEGIN DB ###########");
                 console.log("dB train name: " + snapshot.val().trainName);
