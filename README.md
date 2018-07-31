@@ -9,8 +9,8 @@ View code here: https://github.com/jrkerr2/train-1234
 
 ## Known defects & technical debt
 
--- messages feature not implemented
--- unused variable declarations
--- some edge case / negative path date calc defects (more testing needed)
--- web page is minimimally responsive with bootstrap 4; could use some updating
--- project not added to portfolio yet
+- messages feature not implemented
+- unused variable declarations
+- some edge case / negative path date calc defects (more testing needed)
+- web page is minimimally responsive with bootstrap 4; could use some updating
+- project not added to portfolio yet
