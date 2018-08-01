@@ -6,3 +6,12 @@
     margin: 50px;
     padding: 50px;
 }
+
+#trainList {
+    background-color: yellow;
+
+}
+
+thead {
+    background-color: gray;
+}
